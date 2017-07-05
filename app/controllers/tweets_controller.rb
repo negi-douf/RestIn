@@ -21,10 +21,9 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweets_params)
     
     if @tweet.save
-      # flash message
-      redirect_to root_path
+      redirect_to root_path, notice: "ツイートを投稿しました！"
     else
-      # flash message
+      redirect_to root_path, notice: "ツイートの投稿に失敗しました"
     end
     
   end
