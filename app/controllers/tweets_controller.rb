@@ -50,7 +50,13 @@ class TweetsController < ApplicationController
   
   
   def destroy
+    @tweet = Tweet.find_by(id: params[:id])
     
+    if @tweet.destroy
+      redirect_to root_path, notice: "ツイートを削除しました！"
+    else
+      redirect_to root_path, notice: "ツイートの削除に失敗しました"
+    end
   end
   
   
