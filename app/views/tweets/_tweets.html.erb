@@ -2,4 +2,9 @@
   
   <p> <%= tweet.content %> </p>
   
+  <!-- 対象のパスへ移動する際に id を指定すると
+  　　これだけで移動できる -->
+  <%= link_to "編集", edit_tweet_path(tweet.id) %>
+  
+  
 <% end %>

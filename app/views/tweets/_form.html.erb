@@ -1,8 +1,8 @@
-<%= form_for(@tweet) do |newTweet| %>
+<%= form_for(@tweet) do |tweet| %>
   
-  <%= newTweet.label :content %>
-  <%= newTweet.text_field :content %>
+  <%= tweet.label :content %>
+  <%= tweet.text_field :content %>
   
-  <%= newTweet.submit "投稿" %>
+  <%= tweet.submit "投稿" %>
   
 <% end %>
