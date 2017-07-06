@@ -21,9 +21,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweets_params)
     
     if @tweet.save
-      redirect_to root_path, notice: "ツイートを投稿しました！"
+      flash[:success] = "ツイートを投稿しました！"
+      redirect_to root_path
     else
-      redirect_to root_path, notice: "ツイートの投稿に失敗しました"
+      flash[:danger] = "ツイートの投稿に失敗しました"
+      redirect_to root_path
     end
     
   end
@@ -41,9 +43,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find_by(id: params[:id])
     
     if @tweet.update(tweets_params)
-      redirect_to root_path, notice: "ツイートを編集しました！"
+      flash[:success] = "ツイートを編集しました！"
+      redirect_to root_path
     else
-      redirect_to edit_tweet_path, notice: "ツイートの編集に失敗しました"
+      flash[:danger] = "ツイートの編集に失敗しました"
+      redirect_to edit_tweet_path
     end
     
   end
@@ -53,9 +57,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find_by(id: params[:id])
     
     if @tweet.destroy
-      redirect_to root_path, notice: "ツイートを削除しました！"
+      flash[:success] = "ツイートを削除しました！"
+      redirect_to root_path
     else
-      redirect_to root_path, notice: "ツイートの削除に失敗しました"
+      flash[:danger] = "ツイートの削除に失敗しました"
+      redirect_to root_path
     end
   end
   

@@ -1,8 +1,11 @@
-<%= form_for(@tweet) do |tweet| %>
+<div class="container">
+    <%= form_for(@tweet) do |tweet| %>
+    
+      <div class="col-md-8 col-sm-8 col-xs-10">
+        <%= tweet.text_field :content, class: "form-control" %>
+      </div>
+      
+        <%= tweet.submit "投稿", class: "btn btn-primary btn-sm" %>
+    <% end %>
   
-  <%= tweet.label :content %>
-  <%= tweet.text_field :content %>
-  
-  <%= tweet.submit "投稿" %>
-  
-<% end %>
+</div>
