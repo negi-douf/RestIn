@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>入力確認</h3>
+  
+  <%= form_for(@tweet) do |tweet| %>
+    
+    <!-- hidden_field で @tweet の情報を取得 -->
+    <%= tweet.hidden_field :content %>
+    
+    <div class="row">
+      <div class="col col-md-6 col-sm-8 col-xs-10">
+        <p><%= @tweet.content %></p>
+      </div>
+    </div>
+    
+    <%= tweet.submit "投稿", class: "btn btn-primary btn-sm" %>
+      
+    
+  <% end %>
+</div>

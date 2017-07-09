@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :tweets
+  resources :tweets do
+    # 確認用のメソッド追加
+    collection do
+      post :confirm
+    end
+  end
+  
   
   root "tweets#index"
   

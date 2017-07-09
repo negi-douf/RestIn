@@ -1,5 +1,9 @@
 class TweetsController < ApplicationController
   
+  # エラー出力用のグローバル変数
+  # エラーメッセージを格納する
+  $errors = []
+  
   def index
     
     # 一覧表示用
@@ -12,7 +16,15 @@ class TweetsController < ApplicationController
     # もっといい方法が見つかれば改善したい
     @tweet = Tweet.new()
     
+    # エラーメッセージがある場合は
+    # その内容を渡す
+    unless $errors.empty?
+      @errors = $errors
+      $errors = []
+    end
+    
   end
+  
   
   
   def create
@@ -25,10 +37,13 @@ class TweetsController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = "ツイートの投稿に失敗しました"
+      $errors = @tweet.errors
       redirect_to root_path
     end
     
   end
+  
+  
   
   
   def edit
@@ -36,7 +51,18 @@ class TweetsController < ApplicationController
     # 取得するパラメータが一つの場合は
     # ストロングパラメータはいらない
     @tweet = Tweet.find_by(id: params[:id])
+    
+    # エラーメッセージがある場合は
+    # その内容を渡す
+    unless $errors.empty?
+      @errors = $errors
+      $errors = []
+    end
+    
+    
   end
+  
+  
   
   
   def update
@@ -47,10 +73,13 @@ class TweetsController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = "ツイートの編集に失敗しました"
+      $errors = @tweet.errors
       redirect_to edit_tweet_path
     end
     
   end
+  
+  
   
   
   def destroy
@@ -64,6 +93,14 @@ class TweetsController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  
+  
+  
+  def confirm
+    @tweet = Tweet.new(tweets_params)
+  end
+  
   
   
   

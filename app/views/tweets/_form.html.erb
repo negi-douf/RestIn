@@ -1,11 +1,26 @@
 <div class="container">
-    <%= form_for(@tweet) do |tweet| %>
-    
-      <div class="col-md-8 col-sm-8 col-xs-10">
-        <%= tweet.text_field :content, class: "form-control" %>
+  
+  <!-- エラーがあった際はその内容を表示させる -->
+    <% if @errors %>
+      <div id="error_explanation">
+        <h2><%= @errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% @errors.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
       </div>
-      
-        <%= tweet.submit "投稿", class: "btn btn-primary btn-sm" %>
     <% end %>
   
+  <!-- helper で定義したメソッドで
+      URL を分岐させる -->
+  <%= form_for(@tweet, url: choose_index_or_edit) do |tweet| %>
+  
+    <div class="col-md-6 col-sm-8 col-xs-8">
+      <%= tweet.text_field :content, class: "form-control" %>
+      <%= tweet.submit "投稿", class: "btn btn-primary btn-sm" %>
+    </div>
+  
+  <% end %>
+    
 </div>
