@@ -73,7 +73,7 @@ class TweetsController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = "ツイートの編集に失敗しました"
-      $errors = @tweet.errors
+      $errors = @tweet.errors.full_messages
       redirect_to edit_tweet_path
     end
     
@@ -99,6 +99,12 @@ class TweetsController < ApplicationController
   
   def confirm
     @tweet = Tweet.new(tweets_params)
+    
+    if @tweet.invalid?
+      $errors = @tweet.errors.full_messages
+      redirect_to root_path
+    end
+    
   end
   
   

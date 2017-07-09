@@ -14,7 +14,7 @@
   
   <!-- helper で定義したメソッドで
       URL を分岐させる -->
-  <%= form_for(@tweet, url: choose_index_or_edit) do |tweet| %>
+  <%= form_for(@tweet, url: choose_new_or_edit) do |tweet| %>
   
     <div class="col-md-6 col-sm-8 col-xs-8">
       <%= tweet.text_field :content, class: "form-control" %>
